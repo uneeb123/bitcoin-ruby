@@ -1,6 +1,7 @@
-= Bitcoin-ruby {<img src="https://api.travis-ci.org/lian/bitcoin-ruby.svg?branch=master" />}[http://travis-ci.org/lian/bitcoin-ruby] {<img src="http://inch-ci.org/github/lian/bitcoin-ruby.svg?branch=master" alt="Inline docs" />}[http://inch-ci.org/github/lian/bitcoin-ruby] {<img src="https://tip4commit.com/projects/108.svg" alt="tip for next commit" />}[https://tip4commit.com/github/lian/bitcoin-ruby]
+= Bitcoin-ruby (lite)
 
-This is a ruby library for interacting with the bitcoin protocol/network.
+Forked from [bitcoin-ruby](https://github.com/lian/bitcoin-ruby)
+This is a stripped version of ruby library for interacting with the bitcoin protocol/network.
 
 Some of the main features are:
 
@@ -11,31 +12,7 @@ Some of the main features are:
 * Bitcoin::Builder provides a high-level API for creating transactions (and blocks)
 * Bitcoin::Litecoin implements all the litecoin-specific differences
 
-== Compatible with...
-
-* ruby 1.9.3
-* ruby 2.0.0
-* ruby 2.1.2
-* ruby 2.2.0
-* ruby 2.2.2
-
-== Installation
-
- gem install bitcoin-ruby
- # OR
- git clone https://github.com/lian/bitcoin-ruby.git; cd bitcoin-ruby; bundle install
-
-Note that some aspects of the library (such as networking, storage, etc.) need
-additional dependencies which are not specified in the gemspec. The core requirements are
-intentionally kept to a minimum, so nobody has to install unneeded dependencies.
-
-* +bacon+ to run the specs
-* +scrypt+ to use a much faster scrypt hash implementation for Litecoin
-
-If you would like to install using Bundler, put it in your Gemfile and run bundle install
- gem 'bitcoin-ruby', git: 'https://github.com/lian/bitcoin-ruby', branch: 'master', require: 'bitcoin'
-
-== Library Usage
+= Library Usage
 
 There are different aspects to the library which can be used separately or in combination.
 Here are some ideas of what you could do. There are also some demo scripts in examples/,
@@ -169,16 +146,8 @@ The specs are also a good place to see how something works.
 
 == Specs
 
-The specs can be run with
-
- rake bacon
-
-or, if you want to run a single spec
-
- ruby spec/bitcoin/bitcoin_spec.rb
-
-If you make changes to the code or add functionality, please also add specs.
-
+Need work
+ 
 == Development
 
 Any help or feedback is greatly appreciated! From getting knee-deep into elliptic-curve acrobatics,
