@@ -8,6 +8,7 @@ require 'securerandom'
 
 module Bitcoin
 
+  autoload :Bech32,     'bitcoin/bech32'
   autoload :Connection, 'bitcoin/connection'
   autoload :Protocol,   'bitcoin/protocol'
   autoload :P,          'bitcoin/protocol'
@@ -135,10 +136,8 @@ module Bitcoin
       return Bitcoin.hash160_to_p2sh_address(Bitcoin.hash160(redeem_script.hth)), redeem_script
     end
 
-    # FIXME unusuable at the moment
+
     def encode_segwit_address(version, program_hex)
-      raise "Unable as Bech32 support removed"
-=begin
       hrp = Bitcoin.network[:bech32_hrp]
       raise "Invalid network" if hrp.nil?
 
@@ -154,13 +153,9 @@ module Bitcoin
       address = Bitcoin::Bech32.encode(hrp, data)
 
       return address.nil? ? nil : address
-=end
     end
 
-    # FIXME unusuable at the moment
     def decode_segwit_address(address)
-      raise "Unable as Bech32 support removed"
-=begin
       hrp = Bitcoin.network[:bech32_hrp]
       return nil if hrp.nil?
 
@@ -182,7 +177,6 @@ module Bitcoin
 
       program_hex = program.pack("C*").unpack("H*").first
       return [data[0], program_hex]
-=end
     end
 
     def int_to_base58(int_val, leading_zero_bytes=0)
@@ -628,7 +622,7 @@ module Bitcoin
       privkey_version: "80",
       extended_privkey_version: "0488ade4",
       extended_pubkey_version: "0488b21e",
-      # bech32_hrp: "bc",
+      bech32_hrp: "bc",
       default_port: 8333,
       protocol_version: 70001,
       coinbase_maturity: 100,
@@ -686,7 +680,7 @@ module Bitcoin
       privkey_version: "ef",
       extended_privkey_version: "04358394",
       extended_pubkey_version: "043587cf",
-      # bech32_hrp: "tb",
+      bech32_hrp: "tb",
       default_port: 18333,
       bip34_height: 21111,
       dns_seeds: [ ],
@@ -698,7 +692,7 @@ module Bitcoin
     })
 
   NETWORKS[:regtest] = NETWORKS[:testnet].merge({
-      # bech32_hrp: "bcrt",
+      bech32_hrp: "bcrt",
       default_port: 18444,
       genesis_hash: "0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206",
       proof_of_work_limit: 0x207fffff,
@@ -734,7 +728,7 @@ module Bitcoin
       address_version: "30",
       p2sh_version: "32",
       privkey_version: "b0",
-      # bech32_hrp: "ltc",
+      bech32_hrp: "ltc",
       extended_privkey_version: "019d9cfe",
       extended_pubkey_version: "019da462",
       default_port: 9333,
@@ -785,7 +779,7 @@ module Bitcoin
       address_version: "6f",
       p2sh_version: "3a",
       privkey_version: "ef",
-      # bech32_hrp: "tltc",
+      bech32_hrp: "tltc",
       extended_privkey_version: "0436ef7d",
       extended_pubkey_version: "0436f6e1",
       default_port: 19335,
@@ -809,7 +803,7 @@ module Bitcoin
       address_version: "1e",
       p2sh_version: "16",
       privkey_version: "9e",
-      # bech32_hrp: nil,
+      bech32_hrp: nil,
       extended_privkey_version: "02fac398",
       extended_pubkey_version: "02facafd",
       default_port: 22556,
@@ -912,7 +906,7 @@ module Bitcoin
       project: :namecoin,
       magic_head: "\xF9\xBE\xB4\xFE",
       address_version: "34",
-      # bech32_hrp: nil,
+      bech32_hrp: nil,
       default_port: 8334,
       protocol_version: 35000,
       min_tx_fee: 50_000,
